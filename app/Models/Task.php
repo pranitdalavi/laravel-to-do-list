@@ -10,5 +10,5 @@ class Task extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['id','description'];
+    protected $fillable = ['id','description','created_by'];
 }

@@ -20,10 +20,15 @@ Route::post('post-registration', 'App\Http\Controllers\Auth\AuthController@postR
 Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');
 
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/changePassword', 'Auth\AuthController@showChangePasswordGet')->name('changePassword');
+    Route::post('/changePassword', 'Auth\AuthController@changePasswordPost')->name('changePasswordPost');
+
 Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
 
 Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
 
-Route::get('/delete/{id}', 'App\Http\Controllers\TaskController@destroy');
+Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
 
 Route::get('/edit/task/{id}', 'App\Http\Controllers\TaskController@editTask');
+});

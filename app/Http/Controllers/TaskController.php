@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Auth;
 
 
 class TaskController extends Controller
@@ -14,7 +15,7 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task = $task->get();
-        return view('to_do_list', ['task' => $task]);
+        return view('to_do_list', ['tasks' => $task]);
     }
 
 
@@ -26,10 +27,10 @@ class TaskController extends Controller
             'description' => 'required',
         ]);
 
-        $blog = new Task();
+        $task = new Task();
         $id = $request->id;
 
-        $blog->updateOrCreate(
+        $task->updateOrCreate(
             [
                 'id' => $id,
             ],
@@ -38,6 +39,7 @@ class TaskController extends Controller
                 'created_by' => Auth::user()->id,
             ]
         );
+    
         return redirect('to-do-list');
     }
 
