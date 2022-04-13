@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use App\User;
+use App\Models\User;
 use Hash;
 
 class AuthController extends Controller
@@ -48,7 +48,7 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-
+        dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             return redirect()->intended('cms-blogs');
         }
