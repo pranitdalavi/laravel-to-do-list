@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('login', 'App\Http\Controllers\Auth\AuthController@index')->name('login');
+Route::post('post-login', 'App\Http\Controllers\Auth\AuthController@postLogin')->name('login.post');
+Route::get('registration', 'App\Http\Controllers\Auth\AuthController@registration')->name('registration');
+Route::post('post-registration', 'App\Http\Controllers\Auth\AuthController@postRegistration')->name('register.post');
+Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');
+
+
 Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
 
 Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
