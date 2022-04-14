@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return redirect()->intended('cms-blogs');
+            return redirect()->intended('to-do-list');
         } else {
             return view('auth.login');
         }
