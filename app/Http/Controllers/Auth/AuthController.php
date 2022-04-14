@@ -48,9 +48,9 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        dd(Auth::attempt($credentials));
+
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('cms-blogs');
+            return redirect()->intended('to-do-list');
         }
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
