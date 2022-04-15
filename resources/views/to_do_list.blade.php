@@ -16,7 +16,7 @@
     }
 
     .navn {
-        margin-left: 36rem;
+        margin-left: 30rem;
     }
     </style>
 
@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    @extends('app')
+    @extends('layouts.app')
 
     @section('content')
 
@@ -38,20 +38,10 @@
             {{ csrf_field() }}
 
             <!-- Task Name -->
-            <div class="form-group" style="">
-                <div class="hars">Add Task</div>
-                <br>
-
-
-
-                <div class="col-sm-6">
-                    <input type="text" name="description" id="task-name" class="form-control">
+            <div class="form-group">
+                <div class="col-sm-6" style="width:300px; margin-left:420px">
+                    <input type=" text" name="description" id="task-name" class="form-control">
                 </div>
-
-            </div>
-
-            <!-- Add Task Button -->
-            <div class="form-group-1">
                 <div class="form">
                     <button type="submit" class="btnn">
                         <i class="fa fa-btn fa-plus"></i>

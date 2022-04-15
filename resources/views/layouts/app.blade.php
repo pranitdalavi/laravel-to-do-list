@@ -86,8 +86,7 @@
                                 aria-expanded="false" v-pre>
                                 {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
-                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <a href="{{ route('logout') }}">
                                 {{ __('Logout') }}
                             </a>
                         </li>
