@@ -28,16 +28,10 @@
 
     @section('content')
 
-    <!-- Bootstrap Boilerplate... -->
-
     <div style="text-align: center" class="panel-body">
-        <!-- Display Validation Errors -->
-
-        <!-- New Task Form -->
         <form action="{{ route('store-task') }}" method="POST">
             {{ csrf_field() }}
 
-            <!-- Task Name -->
             <div class="form-group">
                 <div class="col-sm-6" style="width:300px; margin-left:420px">
                     <input type=" text" name="description" id="task-name" class="form-control">
@@ -52,17 +46,12 @@
     </div>
 
 
-    <!-- TODO: Current Tasks -->
     @if (count($tasks) > 0)
     <div style="text-align: center" class="panel panel-default">
-        <!-- <div class="panel-heading">
-        Current Tasks
-    </div> -->
 
         <div class="panel-body">
             <table class="navn">
 
-                <!-- Table Headings -->
                 <div>
                     <thead>
                         <th>&nbsp;</th>
@@ -70,15 +59,12 @@
                 </div>
 
 
-                <!-- Table Body -->
                 <tbody class="navn">
                     @foreach ($tasks as $task)
                     <tr>
-                        <!-- Task Name -->
                         <td><a href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->description }}</a>
                         </td>
 
-                        <!-- Delete Button -->
                         <td>
                             <form action="{{ url('task/'.$task->id) }}" method="POST">
                                 {{ csrf_field() }}
