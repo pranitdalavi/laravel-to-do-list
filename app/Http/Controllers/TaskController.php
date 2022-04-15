@@ -15,7 +15,8 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task = $task->get();
-        return view('to_do_list', ['tasks' => $task]);
+        $title = "Add Task";
+        return view('to_do_list', ['tasks' => $task, 'title'=>$title]);
     }
 
 
@@ -47,7 +48,8 @@ class TaskController extends Controller
     public function editTask($id)
     {
         $task = Task::find($id);
-        return view('edit_task', ['task' => $task]);
+          $title = "Edit Task";
+        return view('edit_task', ['task' => $task,'title'=>$title]);
     }
 
     //Delete task

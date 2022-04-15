@@ -1,77 +1,108 @@
-@extends('app')
+<html>
 
-@section('content')
+<head>
+    <style>
+    .hars {
+        background-color: black;
+        color: white;
+        height: 2rem;
+        padding-top: 1rem;
+    }
 
-<!-- Bootstrap Boilerplate... -->
+    .btnn {
+        margin-left: 13rem;
+        margin-top: -1.2rem;
 
-<div class="panel-body">
-    <!-- Display Validation Errors -->
+    }
 
-    <!-- New Task Form -->
-    <form action="{{ route('store-task') }}" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
+    .navn {
+        margin-left: 36rem;
+    }
+    </style>
 
-        <!-- Task Name -->
-        <div class="form-group">
-            <label for="task-name" class="col-sm-3 control-label">Task</label>
+    <script src="https://kit.fontawesome.com/2b29b6dab6.js" crossorigin="anonymous"></script>
+</head>
 
-            <div class="col-sm-6">
-                <input type="text" name="description" id="task-name" class="form-control">
+<body>
+    @extends('layouts.app')
+
+    @section('content')
+
+    <!-- Bootstrap Boilerplate... -->
+
+    <div style="text-align: center" class="panel-body">
+        <!-- Display Validation Errors -->
+
+        <!-- New Task Form -->
+        <form action="{{ route('store-task') }}" method="POST">
+            {{ csrf_field() }}
+
+            <!-- Task Name -->
+            <div class="form-group" style="">
+                <div class="col-sm-6">
+                    <input type="text" name="description" id="task-name" class="form-control">
+                </div>
+
             </div>
-        </div>
 
-        <!-- Add Task Button -->
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Add Task
-                </button>
+            <!-- Add Task Button -->
+            <div class="form-group-1">
+                <div class="form">
+                    <button type="submit" class="btnn">
+                        <i class="fa fa-btn fa-plus"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
-<!-- TODO: Current Tasks -->
-@if (count($tasks) > 0)
-<div class="panel panel-default">
-    <!-- <div class="panel-heading">
+
+    <!-- TODO: Current Tasks -->
+    @if (count($tasks) > 0)
+    <div style="text-align: center" class="panel panel-default">
+        <!-- <div class="panel-heading">
         Current Tasks
     </div> -->
 
-    <div class="panel-body">
-        <table class="table table-striped task-table">
+        <div class="panel-body">
+            <table class="navn">
 
-            <!-- Table Headings -->
-            <thead>
-                <th>Tasks</th>
-                <th>&nbsp;</th>
-            </thead>
+                <!-- Table Headings -->
+                <div>
+                    <thead>
+                        <th>&nbsp;</th>
+                    </thead>
+                </div>
 
-            <!-- Table Body -->
-            <tbody>
-                @foreach ($tasks as $task)
-                <tr>
-                    <!-- Task Name -->
-                    <td class="table-text">
-                        <div>{{ $task->description }}</div>
-                    </td>
 
-                    <!-- Delete Button -->
-                    <td>
-                        <form action="{{ url('task/'.$task->id) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                <!-- Table Body -->
+                <tbody class="navn">
+                    @foreach ($tasks as $task)
+                    <tr>
+                        <!-- Task Name -->
+                        <td><a href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->description }}</a>
+                        </td>
 
-                            <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
-                                <i class="fa fa-btn fa-trash"></i>Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        <!-- Delete Button -->
+                        <td>
+                            <form action="{{ url('task/'.$task->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+
+                                <button style="margin-left: 3.5rem" type="submit" id="delete-task-{{ $task->id }}"
+                                    class="btn btn-danger">
+                                    <i style="color: #FF0000" class="fa fa-btn fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-@endif
-@endsection
+    @endif
+    @endsection
+</body>
+
+</html>
