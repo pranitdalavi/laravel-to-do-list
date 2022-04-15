@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    @extends('layouts.app')
+    @extends('app')
 
     @section('content')
 
@@ -39,6 +39,11 @@
 
             <!-- Task Name -->
             <div class="form-group" style="">
+                <div class="hars">Add Task</div>
+                <br>
+
+
+
                 <div class="col-sm-6">
                     <input type="text" name="description" id="task-name" class="form-control">
                 </div>
