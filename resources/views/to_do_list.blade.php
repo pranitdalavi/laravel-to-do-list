@@ -86,7 +86,7 @@
 
                                 <button style="margin-left: 3.5rem" type="submit" id="delete-task-{{ $task->id }}"
                                     class="btn btn-danger">
-                                    <i style="color: #FF0000" class="fa fa-btn fa-trash"></i>
+                                    <i class="fa fa-btn fa-trash"></i>
                                 </button>
                             </form>
                         </td>
