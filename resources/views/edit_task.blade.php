@@ -18,16 +18,27 @@
                         <div class="control-group col-8" style="margin-left:10px">
                             <label for="title">Task Title :</label><br>
                             <input type="text" id="title" class="form-control" name="title"
-                                placeholder="Enter Task Title" value="{{ $task->title }}"><br>
+                                placeholder="Enter Task Title" value="{{ $task->title }}">
+                            @if($errors->has('title'))
+                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                            @endif<br>
                         </div>
                         <div class="control-group col-8" style="margin-left:10px">
                             <label for="title">Task Description :</label><br>
                             <input type="text" id="description" class="form-control" name="description"
-                                placeholder="Enter Task Description" value="{{ $task->description }}"><br>
+                                placeholder="Enter Task Description" value="{{ $task->description }}">
+                            @if($errors->has('description'))
+                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                            @endif<br>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="control-group col-8 text-center">
+                            @if(session()->has('message'))
+                            <div id="success" class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                            @endif
                             <button id="btn-submit" class="btn btn-primary">
                                 Update Task
                             </button>

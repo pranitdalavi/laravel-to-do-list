@@ -34,7 +34,8 @@ class TaskController extends Controller
     public function storeTask(Request $request)
     {
         $request->validate([
-            'description' => 'required',
+             'title' => 'required',
+             'description' => 'required',
         ]);
 
         $task = new Task();
@@ -50,8 +51,8 @@ class TaskController extends Controller
                 'created_by' => Auth::user()->id,
             ]
         );
-    
-        return redirect('to-do-list');
+        return redirect()->back()->with('message', 'Task Submitted Successfully');
+        // return redirect('to-do-list');
     }
 
     //Edit task

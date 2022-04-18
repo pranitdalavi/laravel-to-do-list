@@ -31,6 +31,11 @@
                     </div>
                     <div class="row mt-2">
                         <div class="control-group col-8 text-center">
+                            @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                            @endif
                             <button id="btn-submit" class="btn btn-primary">
                                 Create Task
                             </button>
@@ -42,5 +47,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 @endsection
