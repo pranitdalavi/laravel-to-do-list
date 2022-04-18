@@ -15,8 +15,17 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task = $task->get();
-        $title = "Add Task";
+        $title = "To Do App";
         return view('to_do_list', ['tasks' => $task, 'title'=>$title]);
+    }
+
+    //create task
+    public function createTask()
+    {
+        $task = new Task();
+        $task = $task->get();
+        $title = "Add Task";
+        return view('create_task', ['tasks' => $task, 'title'=>$title]);
     }
 
 

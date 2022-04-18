@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
 
+Route::get('/create-task', 'App\Http\Controllers\TaskController@createTask');
+
 Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
 
 Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');

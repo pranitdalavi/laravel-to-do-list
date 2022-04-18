@@ -27,7 +27,8 @@
     @extends('layouts.app')
 
     @section('content')
-
+    <div>
+        <!-- 
     <div style="text-align: center" class="panel-body">
         <form action="{{ route('store-task') }}" method="POST">
             {{ csrf_field() }}
@@ -43,47 +44,49 @@
                 </div>
             </div>
         </form>
-    </div>
-
-
-    @if (count($tasks) > 0)
-    <div style="text-align: center" class="panel panel-default">
-
-        <div class="panel-body">
-            <table class="navn">
-
-                <div>
-                    <thead>
-                        <th>&nbsp;</th>
-                    </thead>
-                </div>
-
-
-                <tbody class="navn">
-                    @foreach ($tasks as $task)
-                    <tr>
-                        <td><a href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->description }}</a>
-                        </td>
-
-                        <td>
-                            <form action="{{ url('task/'.$task->id) }}" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-
-                                <button style="margin-left: 3.5rem" type="submit" id="delete-task-{{ $task->id }}"
-                                    class="btn btn-danger">
-                                    <i class="fa fa-btn fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    </div> -->
+        <div>
+            <a href="/create-task" class="btn btn-outline-primary btn-sm">Create Task</a>
         </div>
-    </div>
-    @endif
-    @endsection
+
+        @if (count($tasks) > 0)
+        <div style="text-align: center" class="panel panel-default">
+
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="navn">
+                        @foreach ($tasks as $task)
+                        <tr>
+                            <td><a
+                                    href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->description }}</a>
+                            </td>
+                            <td>{{ $task->description }}
+                            </td>
+                            <td>
+                                <form action="{{ url('task/'.$task->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                        <i class="fa fa-btn fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @endif
+        @endsection
 </body>
 
 </html>
