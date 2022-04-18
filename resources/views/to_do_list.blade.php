@@ -46,13 +46,13 @@
         </form>
     </div> -->
         <div>
-            <a href="/create-task" class="btn btn-outline-primary btn-sm">Create Task</a>
+            <a href="/create-task" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Create Task</a>
         </div>
-
+        <br>
         @if (count($tasks) > 0)
         <div style="text-align: center" class="panel panel-default">
 
-            <div class="panel-body">
+            <div class="panel-body" style="margin-left: 1rem">
                 <table class="table">
                     <thead>
                         <tr>
