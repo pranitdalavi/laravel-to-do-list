@@ -64,8 +64,7 @@
                     <tbody class="navn">
                         @foreach ($tasks as $task)
                         <tr>
-                            <td><a
-                                    href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->description }}</a>
+                            <td><a href="<?php echo env('app_url'); ?>/edit/task/{{$task->id}}">{{ $task->title }}</a>
                             </td>
                             <td>{{ $task->description }}
                             </td>

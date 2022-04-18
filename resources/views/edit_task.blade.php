@@ -16,6 +16,11 @@
                             <input type="hidden" name="id" value="{{ $task->id }}">
                         </div>
                         <div class="control-group col-8" style="margin-left:10px">
+                            <label for="title">Task Title :</label><br>
+                            <input type="text" id="title" class="form-control" name="title"
+                                placeholder="Enter Task Title" value="{{ $task->title }}"><br>
+                        </div>
+                        <div class="control-group col-8" style="margin-left:10px">
                             <label for="title">Task Description :</label><br>
                             <input type="text" id="description" class="form-control" name="description"
                                 placeholder="Enter Task Description" value="{{ $task->description }}"><br>
