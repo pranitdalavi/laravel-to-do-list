@@ -9,7 +9,7 @@
             <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
                 <h4 class="display-10" style="margin-left:10px">Create a New Task</h4><br>
 
-                <form action="{{ route('store-task') }}" method="POST">
+                <form action="{{ route('store-task') }}" enctype='multipart/form-data' method="POST">
                     @csrf
                     <div class="row">
                         <div class="control-group col-8" style="margin-left:10px">
@@ -26,6 +26,21 @@
                                 placeholder="Enter Task Description">
                             @if($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
+                            @endif<br>
+                        </div>
+                        <div class="control-group col-8" style="margin-left:10px">
+                            <label for="title">Task Due Date :</label>
+                            <input type="text" id="due_date" class="form-control" name="due_date"
+                                placeholder="Enter Task Due Date">
+                            @if($errors->has('due_date'))
+                            <span class="text-danger">{{ $errors->first('due_date') }}</span>
+                            @endif<br>
+                        </div>
+                        <div class="control-group col-8" style="margin-left:10px">
+                            <label for="title">Task Image :</label><br>
+                            <input type="file" id="task_image" class="form-control" name="task_image[]" multiple>
+                            @if($errors->has('task_image'))
+                            <span class="text-danger">{{ $errors->first('task_image') }}</span>
                             @endif<br>
                         </div>
                     </div>

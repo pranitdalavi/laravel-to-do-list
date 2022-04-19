@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\TaskImage;
+use App\Http\Requests\StoreTaskRequest;
 use Auth;
 
 
@@ -31,28 +33,54 @@ class TaskController extends Controller
 
 
     //Store or udpate the task
-    public function storeTask(Request $request)
-    {
+    public function storeTask(StoreTaskRequest $request)
+    {dd(request()->all());
         $request->validate([
-             'title' => 'required',
-             'description' => 'required',
+            //  'title' => 'required',
+            //  'description' => 'required',
+            'task_image' => 'required|max:0.7M',
         ]);
-
+dd(9);
         $task = new Task();
+        $taskImage = new TaskImage();
         $id = $request->id;
-
-        $task->updateOrCreate(
+        $taskImages = $request->task_image;
+        
+        $task = $task->updateOrCreate(
             [
                 'id' => $id,
             ],
             [
-                'description' => $request->description,
                 'title' => $request->title,
+                'description' => $request->description,
+                'due_date' => $request->due_date,
                 'created_by' => Auth::user()->id,
             ]
         );
+       
+        if($request->hasFile('task_image')){
+            foreach($taskImages as $images => $image){
+            $taskImageHashName = $image->hashName();
+            $taskImageSize =  $image->getSize();
+            $destinationPath = 'task_images';
+            $image->move($destinationPath, $taskImageHashName);
+
+            $taskImage->updateOrCreate(
+            [
+                'id' => $id,
+            ],
+            [
+                'task_id' =>  $task->id,
+                'image_original_name' => $image->getClientOriginalName(),
+                'image_hash_name' => $taskImageHashName,
+                'extention' => $image->getClientOriginalExtension(),
+                'image_size' => number_format( $taskImageSize / 1048576, 2) . ' MB',
+                'created_by' => Auth::user()->id,
+            ]);
+            }
+        }
+       
         return redirect()->back()->with('message', 'Task Submitted Successfully');
-        // return redirect('to-do-list');
     }
 
     //Edit task
