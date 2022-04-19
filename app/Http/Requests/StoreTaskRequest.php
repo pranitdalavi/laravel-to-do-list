@@ -13,12 +13,11 @@ class StoreTaskRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        $taskImages = request()->task_image;
+    { 
         $rules =  [
              'title' => 'required',
              'description' => 'required',
-             'task_image' => request()->id ? 'required|max:2M' : 'nullable',
+             'task_image' => request()->id ? 'max:0.7M' : 'required|max:0.7M',
         ];
     
         return $rules;

@@ -39,7 +39,7 @@ class TaskController extends Controller
         $taskImage = new TaskImage();
         $id = $request->id;
         $taskImages = $request->task_image;
-        
+     
         $task = $task->updateOrCreate(
             [
                 'id' => $id,
