@@ -43,8 +43,8 @@
                             <label for="title">Task Image :</label><br>
                             <input type="file" id="due_date" class="form-control" name="task_image[]"
                                 value="{{ $task->due_date }}" multiple>
-                            @if($errors->has('due_date'))
-                            <span class="text-danger">{{ $errors->first('due_date') }}</span>
+                            @if($errors->has('task_image'))
+                            <span class="text-danger">{{ $errors->first('task_image') }}</span>
                             @endif<br>
                         </div>
                     </div>

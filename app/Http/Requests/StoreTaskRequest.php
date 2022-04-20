@@ -17,7 +17,7 @@ class StoreTaskRequest extends FormRequest
         $rules =  [
              'title' => 'required',
              'description' => 'required',
-             'task_image' => request()->id ? 'max:0.7M' : 'required|max:0.7M',
+             'task_image' => request()->id ? 'max:2M' : 'required|max:2M',
         ];
     
         return $rules;
