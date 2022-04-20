@@ -59,7 +59,6 @@
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Due Date</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -71,11 +70,6 @@
                             <td>{{ $task->description }}
                             </td>
                             <td>{{ $task->due_date }}
-                            </td>
-                            <td><label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
                             </td>
                             <td>
                                 <form action="{{ url('task/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">
