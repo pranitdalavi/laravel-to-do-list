@@ -35,7 +35,6 @@ class TaskController extends Controller
     //Store or udpate the task
     public function storeTask(StoreTaskRequest $request)
     {
-        dd($request->all());
         $task = new Task();
         $taskImage = new TaskImage();
         $id = $request->id;
