@@ -51,28 +51,32 @@ class TaskController extends Controller
                 'created_by' => Auth::user()->id,
             ]
         );
-       
-        if($request->hasFile('task_image')){
-            foreach($taskImages as $images => $image){
-            $taskImageHashName = $image->hashName();
-            $taskImageSize =  $image->getSize();
-            $destinationPath = 'task_images';
-            $image->move($destinationPath, $taskImageHashName);
 
-            $taskImage->updateOrCreate(
-            [
-                'id' => $id,
-            ],
-            [
-                'task_id' =>  $task->id,
-                'image_original_name' => $image->getClientOriginalName(),
-                'image_hash_name' => $taskImageHashName,
-                'extention' => $image->getClientOriginalExtension(),
-                'image_size' => number_format( $taskImageSize / 1048576, 2) . ' MB',
-                'created_by' => Auth::user()->id,
-            ]);
-            }
-        }
+        // $task->addMediaFromRequest('task_images')->toMediaCollection('task_images');
+
+         $task->addMultipleMediaFromRequest(['task_image'])->each(function ($fileAdder) {$fileAdder->toMediaCollection('task_images');});
+       
+        // if($request->hasFile('task_image')){
+        //     foreach($taskImages as $images => $image){
+        //     $taskImageHashName = $image->hashName();
+        //     $taskImageSize =  $image->getSize();
+        //     $destinationPath = 'task_images';
+        //     $image->move($destinationPath, $taskImageHashName);
+
+        //     $taskImage->updateOrCreate(
+        //     [
+        //         'id' => $id,
+        //     ],
+        //     [
+        //         'task_id' =>  $task->id,
+        //         'image_original_name' => $image->getClientOriginalName(),
+        //         'image_hash_name' => $taskImageHashName,
+        //         'extention' => $image->getClientOriginalExtension(),
+        //         'image_size' => number_format( $taskImageSize / 1048576, 2) . ' MB',
+        //         'created_by' => Auth::user()->id,
+        //     ]);
+        //     }
+        // }
        
         return redirect()->back()->with('message', 'Task Submitted Successfully');
     }
