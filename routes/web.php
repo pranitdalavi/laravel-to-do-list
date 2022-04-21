@@ -33,4 +33,20 @@ Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->nam
 Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
 
 Route::get('/edit/task/{id}', 'App\Http\Controllers\TaskController@editTask');
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('dropzone', 'DropzoneController@index');
+
+Route::post('dropzone/upload', 'DropzoneController@upload')->name('dropzone.upload');
+
+Route::get('dropzone/fetch', 'DropzoneController@fetch')->name('dropzone.fetch');
+
+Route::get('dropzone/delete', 'DropzoneController@delete')->name('dropzone.delete');
+
+
 });
