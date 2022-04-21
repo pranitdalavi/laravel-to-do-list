@@ -123,39 +123,39 @@
                                 @endif<br>
                             </div>
 
-                            <!-- <div class="drag-area">
+                            <div class="drag-area">
                                 <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                                 <header>Drag & Drop to Upload File</header>
                                 <span>OR</span>
                                 <button>Browse File</button>
                                 <input type="file" hidden>
-                            </div> -->
+                            </div>
 
-                            <div class="control-group col-8" style="margin-left:10px">
-                                <label for="title">Task Image :</label><br>
-                                <input type="file" id="task_image" class="form-control" name="task_image[]" multiple>
-                                @if($errors->has('task_image'))
-                                <span class="text-danger">{{ $errors->first('task_image') }}</span>
-                                @endif<br>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="control-group col-8 text-center">
-                                @if(session()->has('message'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('message') }}
-                                </div>
-                                @endif
-                                <button id="btn-submit" class="btn btn-primary">
-                                    Create Task
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                            {{-- <div class="control-group col-8" style="margin-left:10px">
+                            <label for="title">Task Image :</label><br>
+                            <input type="file" id="task_image" class="form-control" name="task_image[]" multiple>
+                            @if($errors->has('task_image'))
+                            <span class="text-danger">{{ $errors->first('task_image') }}</span>
+                            @endif<br>
+                        </div> --}}
                 </div>
-
+                <div class="row mt-2">
+                    <div class="control-group col-8 text-center">
+                        @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @endif
+                        <button id="btn-submit" class="btn btn-primary">
+                            Create Task
+                        </button>
+                    </div>
+                </div>
+                </form>
             </div>
+
         </div>
+    </div>
     </div>
     <script>
     //selecting all required elements
