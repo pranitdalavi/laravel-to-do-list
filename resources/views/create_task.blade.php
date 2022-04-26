@@ -6,6 +6,7 @@
     <title>Drag & Drop or Browse: File Upload | CodingNepal</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -17,25 +18,7 @@
             font-family: "Poppins", sans-serif;
         }
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            background: #5256ad;
-        }
-
-        .drag-area {
-            margin-left: 1.8rem;
-            border: 2px dashed #000000;
-            height: 190px;
-            width: 700px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
+      
     </style>
 </head>
 
@@ -77,15 +60,15 @@
                                 <span class="text-danger">{{ $errors->first('due_date') }}</span>
                                 @endif<br>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label for="document">Documents</label>
-                                <div class="needsclick dropzone" id="document-dropzone">
+                                <div class="needsclick dropzone" style="width: 46rem" id="document-dropzone">
                                 </div>
                                 @if($errors->has('task_images'))
                                 <span class="text-danger">{{ $errors->first('task_images') }}</span>
                                 @endif<br>
                             </div>
-                            <button type="submit" value="Submit">Create Task</button>
+                            <button type="submit" value="Submit" class="w-28" style="width: 46rem">Create Task</button>
 
                         </div>
                         <div class="row mt-2">
