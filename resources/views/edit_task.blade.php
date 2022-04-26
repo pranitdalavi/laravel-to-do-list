@@ -81,6 +81,15 @@
                             </div>
                             <button type="submit" value="Submit">Update Task</button>
                         </div>
+                        <div class="row mt-2">
+                            <div class="control-group col-8 text-center">
+                                @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('message') }}
+                                </div>
+                                @endif
+                            </div>
+                        </div>
                     </form>
                 </div>
 
