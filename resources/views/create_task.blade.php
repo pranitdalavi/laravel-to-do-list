@@ -60,9 +60,9 @@
                                 <span class="text-danger">{{ $errors->first('due_date') }}</span>
                                 @endif<br>
                             </div>
-                            <div class="form-group ">
-                                <label for="document">Documents</label>
-                                <div class="needsclick dropzone" style="width: 46rem" id="document-dropzone">
+                            <div class="form-group">
+                                <label for="document">Task Images : </label>
+                                <div class="needsclick dropzone" id="document-dropzone">
                                 </div>
                                 @if($errors->has('task_images'))
                                 <span class="text-danger">{{ $errors->first('task_images') }}</span>
