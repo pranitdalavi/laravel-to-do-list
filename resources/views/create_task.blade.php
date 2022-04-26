@@ -61,14 +61,14 @@
                                 @endif<br>
                             </div>
                             <div class="form-group">
-                                <label for="document">Task Images : </label>
-                                <div class="needsclick dropzone" id="document-dropzone">
+                                <label for="document" style="margin-left: 0.6rem">Task Images : </label>
+                                <div class="needsclick dropzone" style="width: 44rem; margin-left: 0.6rem" id="document-dropzone">
                                 </div>
                                 @if($errors->has('task_images'))
                                 <span class="text-danger">{{ $errors->first('task_images') }}</span>
                                 @endif<br>
                             </div>
-                            <button type="submit" value="Submit" class="w-28" style="width: 46rem">Create Task</button>
+                            <button type="submit" value="Submit" style="width: 4.5rem; margin-left: 23rem; margin-top: -1rem; background-Color: #00BFFF; color: #000000"><span style="margin-left: -0.2rem">Create</span></button>
 
                         </div>
                         <div class="row mt-2">
