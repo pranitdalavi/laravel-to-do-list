@@ -59,7 +59,7 @@
                                 @endif<br>
                             </div>
                             <div class="form-group">
-                                <label for="document" style="margin-left: 0.6rem">Task Images : </label>
+                                <label for="document" style="margin-left: 1rem">Task Images : </label>
                                 <div class="needsclick dropzone" style="width: 44rem; margin-left: 0.6rem" id="document-dropzone">
                                 </div>
                                 @if($errors->has('task_images'))
