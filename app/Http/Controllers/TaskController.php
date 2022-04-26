@@ -50,21 +50,19 @@ class TaskController extends Controller
         );
 
         if ($request->id) {
-            // if (count($task->getMedia('task')) > 0) {
-            //     foreach ($task->getMedia('task') as $media) {
-            //         if (!in_array($media->file_name, $request->input('task_images', []))) {
-            //             $media->delete();
-            //         }
-            //     }
-            // }
+            if (count($task->getMedia('task')) > 0) {
+                foreach ($task->getMedia('task') as $media) {
+                    if (!in_array($media->file_name, $request->input('task_images', []))) {
+                        $media->delete();
+                    }
+                }
+            }
             $media = $task->getMedia('task')->pluck('file_name')->toArray();
             $media = $task->getMedia('task')->toArray();
 
             foreach ($request->input('task_images', []) as $file) {
                 if (count($media) === 0 || !in_array($file, $media)) {
-                    dd($file);
-                    dd(!in_array($file, $media));
-                    $task->task->where('uuid',)->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
+                    $task->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
                 }
             }
         } else {
