@@ -3,6 +3,7 @@
 /public/storage
 /public/task_images
 /storage/*.key
+/storage/debugbar
 /vendor
 .env.backup
 .phpunit.result.cache

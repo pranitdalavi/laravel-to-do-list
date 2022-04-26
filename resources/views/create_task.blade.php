@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag & Drop or Browse: File Upload | CodingNepal</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -55,7 +53,7 @@
                 <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
                     <h4 class="display-10" style="margin-left:10px">Create a New Task</h4><br>
 
-                    <form action="{{ route('store-task') }}" enctype="multipart/form-data" class="dropzone" id="dropzone" method="POST">
+                    <form action="{{ route('store-task') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="row">
                             <div class="control-group col-8" style="margin-left:10px">
@@ -79,18 +77,16 @@
                                 <span class="text-danger">{{ $errors->first('due_date') }}</span>
                                 @endif<br>
                             </div>
-                            <form method="post" action="{{url('store-task')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
-                                @csrf
-                            </form>
-
-
-                            <!-- <div class="control-group col-8" style="margin-left:10px">
-                                <label for="title">Task Image :</label><br>
-                                <input type="file" id="task_image" class="form-control" name="task_image[]" multiple>
-                                @if($errors->has('task_image'))
-                                <span class="text-danger">{{ $errors->first('task_image') }}</span>
+                            <div class="form-group">
+                                <label for="document">Documents</label>
+                                <div class="needsclick dropzone" id="document-dropzone">
+                                </div>
+                                @if($errors->has('task_images'))
+                                <span class="text-danger">{{ $errors->first('task_images') }}</span>
                                 @endif<br>
-                            </div> -->
+                            </div>
+                            <button type="submit" value="Submit">Submit</button>
+
                         </div>
                         <div class="row mt-2">
                             <div class="control-group col-8 text-center">
@@ -99,9 +95,6 @@
                                     {{ session()->get('message') }}
                                 </div>
                                 @endif
-                                <button id="btn-submit" class="btn btn-primary">
-                                    Create Task
-                                </button>
                             </div>
                         </div>
                     </form>
@@ -114,23 +107,43 @@
 
 </html>
 
-<script type="text/javascript">
-    Dropzone.options.dropzone = {
-        maxFilesize: 12,
-        renameFile: function(file) {
-            var dt = new Date();
-            var time = dt.getTime();
-            return time + file.name;
-        },
-        acceptedFiles: ".jpeg,.jpg,.png,.gif",
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+{{-- ...Some more scripts... --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
+<script>
+    var uploadedDocumentMap = {}
+    Dropzone.options.documentDropzone = {
+        url: 'projects/media',
+        maxFilesize: 2, // MB
         addRemoveLinks: true,
-        autoProcessQueue: false,
-        timeout: 5000,
-        success: function(file, response) {
-            console.log(response);
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
-        error: function(file, response) {
-            return false;
+        success: function(file, response) {
+            $('form').append('<input type="hidden" name="task_images[]" value="' + response.name + '">')
+            uploadedDocumentMap[file.name] = response.name
+        },
+        removedfile: function(file) {
+            file.previewElement.remove()
+            var name = ''
+            if (typeof file.file_name !== 'undefined') {
+                name = file.file_name
+            } else {
+                name = uploadedDocumentMap[file.name]
+            }
+            $('form').find('input[name="task_images[]"][value="' + name + '"]').remove()
+        },
+        init: function() {
+
+            for (var i in files) {
+                var file = files[i]
+                this.options.addedfile.call(this, file)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="task_images[]" value="' + file.file_name + '">')
+            }
+
         }
-    };
+    }
 </script>

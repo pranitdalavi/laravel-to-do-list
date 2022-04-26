@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('login', 'App\Http\Controllers\Auth\AuthController@index')->name('login');
 Route::post('post-login', 'App\Http\Controllers\Auth\AuthController@postLogin')->name('login.post');
 Route::get('registration', 'App\Http\Controllers\Auth\AuthController@registration')->name('registration');
@@ -21,32 +22,31 @@ Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('l
 
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('projects/media', 'App\Http\Controllers\TaskController@storeMedia')->name('projects.storeMedia');
     Route::get('/changePassword', 'Auth\AuthController@showChangePasswordGet')->name('changePassword');
     Route::post('/changePassword', 'Auth\AuthController@changePasswordPost')->name('changePasswordPost');
 
-Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
+    Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
 
-Route::get('/create-task', 'App\Http\Controllers\TaskController@createTask');
+    Route::get('/create-task', 'App\Http\Controllers\TaskController@createTask');
 
-Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
+    Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
 
-Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
+    Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
 
-Route::get('/edit/task/{id}', 'App\Http\Controllers\TaskController@editTask');
-
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('dropzone', 'DropzoneController@index');
-
-Route::post('dropzone/upload', 'DropzoneController@upload')->name('dropzone.upload');
-
-Route::get('dropzone/fetch', 'DropzoneController@fetch')->name('dropzone.fetch');
-
-Route::get('dropzone/delete', 'DropzoneController@delete')->name('dropzone.delete');
+    Route::get('/edit/task/{id}', 'App\Http\Controllers\TaskController@editTask');
 
 
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('dropzone', 'DropzoneController@index');
+
+    Route::post('dropzone/upload', 'DropzoneController@upload')->name('dropzone.upload');
+
+    Route::get('dropzone/fetch', 'DropzoneController@fetch')->name('dropzone.fetch');
+
+    Route::get('dropzone/delete', 'DropzoneController@delete')->name('dropzone.delete');
 });

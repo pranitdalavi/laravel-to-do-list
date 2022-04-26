@@ -11,14 +11,13 @@ use Auth;
 
 class TaskController extends Controller
 {
-
     //tasks listing
     public function listTasks()
     {
         $task = new Task();
         $task = $task->get();
         $title = "To Do App";
-        return view('to_do_list', ['tasks' => $task, 'title'=>$title]);
+        return view('to_do_list', ['tasks' => $task, 'title' => $title]);
     }
 
     //create task
@@ -27,7 +26,7 @@ class TaskController extends Controller
         $task = new Task();
         $task = $task->get();
         $title = "Add Task";
-        return view('create_task', ['tasks' => $task, 'title'=>$title]);
+        return view('create_task', ['tasks' => $task, 'title' => $title]);
     }
 
 
@@ -39,7 +38,7 @@ class TaskController extends Controller
         $taskImage = new TaskImage();
         $id = $request->id;
         $taskImages = $request->task_image;
-     
+
         $task = $task->updateOrCreate(
             [
                 'id' => $id,
@@ -52,32 +51,15 @@ class TaskController extends Controller
             ]
         );
 
-        // $task->addMediaFromRequest('task_images')->toMediaCollection('task_images');
 
-         $task->addMultipleMediaFromRequest(['task_image'])->each(function ($fileAdder) {$fileAdder->toMediaCollection('task_images');});
-       
-        // if($request->hasFile('task_image')){
-        //     foreach($taskImages as $images => $image){
-        //     $taskImageHashName = $image->hashName();
-        //     $taskImageSize =  $image->getSize();
-        //     $destinationPath = 'task_images';
-        //     $image->move($destinationPath, $taskImageHashName);
+        // $task->addMultipleMediaFromRequest(['task_images'])->each(function ($fileAdder) {
+        //     $fileAdder->toMediaCollection('task_images');
+        // });
 
-        //     $taskImage->updateOrCreate(
-        //     [
-        //         'id' => $id,
-        //     ],
-        //     [
-        //         'task_id' =>  $task->id,
-        //         'image_original_name' => $image->getClientOriginalName(),
-        //         'image_hash_name' => $taskImageHashName,
-        //         'extention' => $image->getClientOriginalExtension(),
-        //         'image_size' => number_format( $taskImageSize / 1048576, 2) . ' MB',
-        //         'created_by' => Auth::user()->id,
-        //     ]);
-        //     }
-        // }
-       
+        foreach ($request->input('task_images', []) as $file) {
+            $task->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
+        }
+
         return redirect()->back()->with('message', 'Task Submitted Successfully');
     }
 
@@ -85,8 +67,8 @@ class TaskController extends Controller
     public function editTask($id)
     {
         $task = Task::find($id);
-          $title = "Edit Task";
-        return view('edit_task', ['task' => $task,'title'=>$title]);
+        $title = "Edit Task";
+        return view('edit_task', ['task' => $task, 'title' => $title]);
     }
 
     //Delete task
@@ -97,5 +79,27 @@ class TaskController extends Controller
         if ($taskDeleted) {
             return redirect('to-do-list');
         }
+    }
+
+    public function storeMedia(Request $request)
+    {
+        // $path = storage_path('tmp/uploads');
+
+        // if (!file_exists($path)) {
+        //     mkdir($path, 0777, true);
+        // }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $destinationPath = 'task_images';
+        $file->move($destinationPath, $name);
+        // $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 }
