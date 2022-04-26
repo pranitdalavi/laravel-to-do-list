@@ -14,7 +14,6 @@ class StoreTaskRequest extends FormRequest
      */
     public function rules()
     {
-        dd(request()->all());
         $rules =  [
             'title' => 'required',
             'description' => 'required',

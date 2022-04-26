@@ -27,6 +27,7 @@ Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('l
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('projects/media', 'App\Http\Controllers\TaskController@storeMedia')->name('projects.storeMedia');
+    Route::post('edit/task/projects/media', 'App\Http\Controllers\TaskController@storeMedia')->name('projects.storeMedia');
     Route::get('/changePassword', 'Auth\AuthController@showChangePasswordGet')->name('changePassword');
     Route::post('/changePassword', 'Auth\AuthController@changePasswordPost')->name('changePasswordPost');
 

@@ -35,9 +35,7 @@ class TaskController extends Controller
     public function storeTask(StoreTaskRequest $request)
     {
         $task = new Task();
-        $taskImage = new TaskImage();
         $id = $request->id;
-        $taskImages = $request->task_image;
 
         $task = $task->updateOrCreate(
             [
@@ -51,13 +49,28 @@ class TaskController extends Controller
             ]
         );
 
+        if ($request->id) {
+            // if (count($task->getMedia('task')) > 0) {
+            //     foreach ($task->getMedia('task') as $media) {
+            //         if (!in_array($media->file_name, $request->input('task_images', []))) {
+            //             $media->delete();
+            //         }
+            //     }
+            // }
+            $media = $task->getMedia('task')->pluck('file_name')->toArray();
+            $media = $task->getMedia('task')->toArray();
 
-        // $task->addMultipleMediaFromRequest(['task_images'])->each(function ($fileAdder) {
-        //     $fileAdder->toMediaCollection('task_images');
-        // });
-
-        foreach ($request->input('task_images', []) as $file) {
-            $task->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
+            foreach ($request->input('task_images', []) as $file) {
+                if (count($media) === 0 || !in_array($file, $media)) {
+                    dd($file);
+                    dd(!in_array($file, $media));
+                    $task->task->where('uuid',)->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
+                }
+            }
+        } else {
+            foreach ($request->input('task_images', []) as $file) {
+                $task->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
+            }
         }
 
         return redirect()->back()->with('message', 'Task Submitted Successfully');
