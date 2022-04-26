@@ -122,7 +122,6 @@
             $('form').find('input[name="task_images[]"][value="' + name + '"]').remove()
         },
         init: function() {
-
             for (var i in files) {
                 var file = files[i]
                 this.options.addedfile.call(this, file)

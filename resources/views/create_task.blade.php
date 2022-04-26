@@ -24,18 +24,6 @@
             min-height: 60vh;
             background: #5256ad;
         }
-
-        .drag-area {
-            margin-left: 1.8rem;
-            border: 2px dashed #000000;
-            height: 190px;
-            width: 700px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
     </style>
 </head>
 
