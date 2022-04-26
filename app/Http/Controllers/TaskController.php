@@ -55,7 +55,7 @@ class TaskController extends Controller
         // $task->addMultipleMediaFromRequest(['task_images'])->each(function ($fileAdder) {
         //     $fileAdder->toMediaCollection('task_images');
         // });
-
+        dd(request()->all());
         foreach ($request->input('task_images', []) as $file) {
             $task->addMedia(public_path('task_images/' . $file))->toMediaCollection('task');
         }

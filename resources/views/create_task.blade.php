@@ -85,7 +85,7 @@
                                 <span class="text-danger">{{ $errors->first('task_images') }}</span>
                                 @endif<br>
                             </div>
-                            <button type="submit" value="Submit">Submit</button>
+                            <button type="submit" value="Submit">Create Task</button>
 
                         </div>
                         <div class="row mt-2">
@@ -109,7 +109,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-{{-- ...Some more scripts... --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
 <script>
