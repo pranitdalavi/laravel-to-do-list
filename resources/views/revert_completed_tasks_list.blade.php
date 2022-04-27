@@ -1,24 +1,7 @@
 <html>
 
 <head>
-    <style>
-        .hars {
-            background-color: black;
-            color: white;
-            height: 2rem;
-            padding-top: 1rem;
-        }
-
-        .btnn {
-            margin-left: 13rem;
-            margin-top: -1.2rem;
-
-        }
-
-        .navn {
-            margin-left: 30rem;
-        }
-    </style>
+    
 
     <script src="https://kit.fontawesome.com/2b29b6dab6.js" crossorigin="anonymous"></script>
 </head>
@@ -46,7 +29,8 @@
         </form>
     </div> -->
         <div>
-            <a href="/to-do-list" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Back</a>
+            <h4 style="margin-left: 27rem">Completed Tasks</h4>
+            <a href="/to-do-list" style="margin-left: 60rem; width: 4rem; margin-top: -2.3rem" class="btn btn-outline-primary btn-sm">Back</a>
         </div>
         <br>
         @if (count($tasks) > 0)
@@ -59,7 +43,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Due Date</th>
-                            <th scope="col">Mark as completed</th>
+                            <th scope="col">Mark as Incompleted</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -72,7 +56,7 @@
                             </td>
                             <td>{{ $task->due_date }}
                             </td>
-                            <td><input type="checkbox" onClick="Javascript:window.location.href = window.location.origin + '/update-revert-status/{{$task->id}}';">
+                            <td><input type="checkbox" style="margin-left: 3.5rem; margin-top: 0.5rem" onClick="Javascript:window.location.href = window.location.origin + '/update-revert-status/{{$task->id}}';">
                             </td>
                             <td>
                                 <form action="{{ url('task/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">

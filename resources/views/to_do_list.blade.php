@@ -2,22 +2,7 @@
 
 <head>
     <style>
-        .hars {
-            background-color: black;
-            color: white;
-            height: 2rem;
-            padding-top: 1rem;
-        }
-
-        .btnn {
-            margin-left: 13rem;
-            margin-top: -1.2rem;
-
-        }
-
-        .navn {
-            margin-left: 30rem;
-        }
+      
     </style>
 
     <script src="https://kit.fontawesome.com/2b29b6dab6.js" crossorigin="anonymous"></script>
@@ -46,10 +31,10 @@
         </form>
     </div> -->
         <div>
-            <a href="/create-task" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Create Task</a>
+            <a href="/create-task" style="margin-left: 58rem" class="btn btn-outline-primary btn-sm">Create Task</a>
         </div>
         <div>
-            <a href="/completed-tasks" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Show completed tasks</a>
+            <a href="/completed-tasks" style="margin-left: 65rem; margin-top: -2rem" class="btn btn-outline-primary btn-sm">Show completed tasks</a>
         </div>
         <br>
         @if (count($tasks) > 0)
@@ -75,7 +60,7 @@
                             </td>
                             <td>{{ $task->due_date }}
                             </td>
-                            <td><input type="checkbox" onClick="Javascript:window.location.href = window.location.origin + '/update-status/{{$task->id}}';">
+                            <td><input type="checkbox" style="margin-left: 3.5rem; margin-top: 0.5rem" onClick="Javascript:window.location.href = window.location.origin + '/update-status/{{$task->id}}';">
                             </td>
                             <td>
                                 <form action="{{ url('task/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">
