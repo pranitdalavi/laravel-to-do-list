@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    
+
 
     <script src="https://kit.fontawesome.com/2b29b6dab6.js" crossorigin="anonymous"></script>
 </head>
@@ -56,7 +56,7 @@
                             </td>
                             <td>{{ $task->due_date }}
                             </td>
-                            <td><input type="checkbox" style="margin-left: 3.5rem; margin-top: 0.5rem" onClick="Javascript:window.location.href = window.location.origin + '/update-revert-status/{{$task->id}}';">
+                            <td><input type="checkbox" style="margin-left: 3.5rem; margin-top: 0.5rem" onClick="Javascript:window.location.href = window.location.origin + '/update-revert-status/{{$task->id}}';" checked>
                             </td>
                             <td>
                                 <form action="{{ url('task/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">
