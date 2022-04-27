@@ -100,7 +100,7 @@ class TaskController extends Controller
         }
     }
 
-    //Completed task
+    //Update task status as completed
     public function completedTask($id, Request $request)
     {
         $task = Task::find($id);
@@ -112,7 +112,7 @@ class TaskController extends Controller
         return redirect('to-do-list');
     }
 
-    //Revert the completed task
+    //Update task status as incompleted
     public function revertCompletedTask($id, Request $request)
     {
         $task = Task::find($id);
@@ -124,21 +124,15 @@ class TaskController extends Controller
         return redirect('completed-tasks');
     }
 
+    //Stores all the image files to specified path
     public function storeMedia(Request $request)
     {
-        // $path = storage_path('tmp/uploads');
-
-        // if (!file_exists($path)) {
-        //     mkdir($path, 0777, true);
-        // }
-
         $file = $request->file('file');
 
         $name = uniqid() . '_' . trim($file->getClientOriginalName());
 
         $destinationPath = 'task_images';
         $file->move($destinationPath, $name);
-        // $file->move($path, $name);
 
         return response()->json([
             'name'          => $name,
