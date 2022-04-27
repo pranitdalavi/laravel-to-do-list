@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
-use App\Models\TaskImage;
 use App\Http\Requests\StoreTaskRequest;
 use Auth;
 
@@ -15,9 +14,18 @@ class TaskController extends Controller
     public function listTasks()
     {
         $task = new Task();
-        $task = $task->get();
+        $tasks = $task->whereNull('status')->get();
         $title = "To Do App";
-        return view('to_do_list', ['tasks' => $task, 'title' => $title]);
+        return view('to_do_list', ['tasks' => $tasks, 'title' => $title]);
+    }
+
+    //completed tasks listing
+    public function showCompletedTasks()
+    {
+        $task = new Task();
+        $tasks = $task->whereNotNull('status')->get();
+        $title = "To Do App";
+        return view('revert_completed_tasks_list', ['tasks' => $tasks, 'title' => $title]);
     }
 
     //create task
@@ -90,6 +98,30 @@ class TaskController extends Controller
         if ($taskDeleted) {
             return redirect('to-do-list');
         }
+    }
+
+    //Completed task
+    public function completedTask($id, Request $request)
+    {
+        $task = Task::find($id);
+
+        $task->update([
+            'status' => 1,
+        ]);
+
+        return redirect('to-do-list');
+    }
+
+    //Revert the completed task
+    public function revertCompletedTask($id, Request $request)
+    {
+        $task = Task::find($id);
+
+        $task->update([
+            'status' => null,
+        ]);
+
+        return redirect('completed-tasks');
     }
 
     public function storeMedia(Request $request)

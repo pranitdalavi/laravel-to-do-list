@@ -46,10 +46,7 @@
         </form>
     </div> -->
         <div>
-            <a href="/create-task" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Create Task</a>
-        </div>
-        <div>
-            <a href="/completed-tasks" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Show completed tasks</a>
+            <a href="/to-do-list" style="margin-left: 60rem" class="btn btn-outline-primary btn-sm">Back</a>
         </div>
         <br>
         @if (count($tasks) > 0)
@@ -75,7 +72,7 @@
                             </td>
                             <td>{{ $task->due_date }}
                             </td>
-                            <td><input type="checkbox" onClick="Javascript:window.location.href = window.location.origin + '/update-status/{{$task->id}}';">
+                            <td><input type="checkbox" onClick="Javascript:window.location.href = window.location.origin + '/update-revert-status/{{$task->id}}';">
                             </td>
                             <td>
                                 <form action="{{ url('task/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">

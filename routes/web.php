@@ -33,9 +33,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/to-do-list', 'App\Http\Controllers\TaskController@listTasks');
 
+    Route::get('/completed-tasks', 'App\Http\Controllers\TaskController@showCompletedTasks');
+
     Route::get('/create-task', 'App\Http\Controllers\TaskController@createTask');
 
     Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
+
+    Route::get('/update-status/{id}', 'App\Http\Controllers\TaskController@completedTask');
+
+    Route::get('/update-revert-status/{id}', 'App\Http\Controllers\TaskController@revertCompletedTask');
 
     Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
 
