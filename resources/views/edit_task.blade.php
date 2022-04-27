@@ -66,14 +66,14 @@
                             </div>
                             <div class="control-group col-8" style="margin-left:10px">
                                 <label for="title">Task Due Date :</label><br>
-                                <input type="text" id="due_date" class="form-control" name="due_date" placeholder="Enter Task Due Date" value="{{ $task->due_date }}">
+                                <input type="date" id="due_date" class="form-control" name="due_date" placeholder="Enter Task Due Date" value="{{ $task->due_date }}">
                                 @if($errors->has('due_date'))
                                 <span class="text-danger">{{ $errors->first('due_date') }}</span>
                                 @endif<br>
                             </div>
                             <div class="form-group">
                                 <label for="document" style="margin-left: 1.4rem">Task Images : </label>
-                                <div class="needsclick dropzone" style="width: 28rem; margin-left: 1.5rem"  id="document-dropzone">
+                                <div class="needsclick dropzone" style="width: 28rem; margin-left: 1.5rem" id="document-dropzone">
                                 </div>
                                 @if($errors->has('task_images'))
                                 <span class="text-danger">{{ $errors->first('task_images') }}</span>

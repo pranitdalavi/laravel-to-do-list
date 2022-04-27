@@ -53,7 +53,7 @@
                             </div>
                             <div class="control-group col-8" style="margin-left:10px">
                                 <label for="title">Task Due Date :</label>
-                                <input type="text" id="due_date" class="form-control" name="due_date" placeholder="Enter Task Due Date">
+                                <input type="date" id="due_date" class="form-control" name="due_date" placeholder="Enter Task Due Date">
                                 @if($errors->has('due_date'))
                                 <span class="text-danger">{{ $errors->first('due_date') }}</span>
                                 @endif<br>
