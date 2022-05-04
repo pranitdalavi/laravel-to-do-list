@@ -39,7 +39,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-8 pt-2">
+            <div class="col-6 pt-2">
                 <a href="/to-do-list" class="btn btn-outline-primary btn-sm">Go back</a>
                 <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
                     <h4 class="display-20" style="margin-left:10px">Edit Task</h4><br>
@@ -92,58 +92,13 @@
                         </div>
                     </form>
                 </div>
-                <div class="border rounded mt-5 pl-4 pr-4 pt-4 pb-4">
-                    <h4 class="display-20" style="margin-left:10px">Edit Task</h4><br>
-
-                    <form action="{{ route('store-task') }}" enctype='multipart/form-data' method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="control-group col-8">
-                                <input type="hidden" name="id" value="{{ $task->id }}">
-                            </div>
-                            <div class="control-group col-8" style="margin-left:10px">
-                                <label for="title">Task Title :</label><br>
-                                <input type="text" id="title" class="form-control" name="title" placeholder="Enter Task Title" value="{{ $task->title }}">
-                                @if($errors->has('title'))
-                                <span class="text-danger">{{ $errors->first('title') }}</span>
-                                @endif<br>
-                            </div>
-                            <div class="control-group col-8" style="margin-left:10px">
-                                <label for="title">Task Description :</label><br>
-                                <input type="text" id="description" class="form-control" name="description" placeholder="Enter Task Description" value="{{ $task->description }}">
-                                @if($errors->has('description'))
-                                <span class="text-danger">{{ $errors->first('description') }}</span>
-                                @endif<br>
-                            </div>
-                            <div class="control-group col-8" style="margin-left:10px">
-                                <label for="title">Task Due Date :</label><br>
-                                <input type="date" id="due_date" class="form-control" name="due_date" placeholder="Enter Task Due Date" value="{{ $task->due_date }}">
-                                @if($errors->has('due_date'))
-                                <span class="text-danger">{{ $errors->first('due_date') }}</span>
-                                @endif<br>
-                            </div>
-                            <div class="form-group">
-                                <label for="document" style="margin-left: 1.4rem">Task Images : </label>
-                                <div class="needsclick dropzone" style="width: 28rem; margin-left: 1.5rem" id="document-dropzone">
-                                </div>
-                                @if($errors->has('task_images'))
-                                <span class="text-danger">{{ $errors->first('task_images') }}</span>
-                                @endif<br>
-                            </div>
-                            <button type="submit" value="Submit" style="width: 4.5rem; margin-left: 13rem; margin-top: -1rem; background-Color: #00BFFF; color: #000000"><span style="margin-left: -0.1rem">Update</span></button>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="control-group col-8 text-center">
-                                @if(session()->has('message'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('message') }}
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+               
             </div>
+        </div>
+        <div style="margin-left: 40rem; width: 44%; height: 73%; margin-top: -39rem" class="border rounded ">
+            <h4  style="margin-left:20px; margin-top: 10px">Images</h4><br>
+
+           
         </div>
     </div>
 
