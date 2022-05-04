@@ -92,13 +92,36 @@
                         </div>
                     </form>
                 </div>
-               
+
             </div>
         </div>
         <div style="margin-left: 40rem; width: 44%; height: 73%; margin-top: -39rem" class="border rounded ">
-            <h4  style="margin-left:20px; margin-top: 10px">Images</h4><br>
+            <h4 style="margin-left:20px; margin-top: 10px">Images</h4><br>
+            <div style="text-align: center" class="panel panel-default">
 
-           
+                <div class="panel-body" style="margin-left: 1rem">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Image Name</th>
+                            </tr>
+                        </thead>
+                        <tbody class="navn">
+                            @foreach($taskImages as $image)
+                            <tr>
+                                <td>
+                                    <img src="{{$image->getUrl()}}" width="120px"><br />
+                                </td>
+                                <td>
+                                    {{$image->name}}<br />
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -86,19 +86,10 @@ class TaskController extends Controller
     public function editTask($id)
     {
         $task = Task::find($id);
-        $title = "Edit Task";
-        return view('edit_task', ['task' => $task, 'title' => $title]);
-    }
+        $taskImages[] = $task->getMedia('task');
 
-    //Retrieve task images
-    public function getTaskImages($id)
-    {
-        $task = Task::find($id);
-        dd($task->getFirstMediaUrl('task'));
-        $taskImages = $task->getMedia();
-        dd($taskImages);
         $title = "Edit Task";
-        return view('edit_task', ['task' => $task, 'title' => $title]);
+        return view('edit_task', ['task' => $task, 'title' => $title, 'taskImages' => $taskImages[0]]);
     }
 
     //Delete task
