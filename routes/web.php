@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/create-task', 'App\Http\Controllers\TaskController@createTask');
 
+    Route::get('/get-task-images/{id}', 'App\Http\Controllers\TaskController@getTaskImages');
+
     Route::post('/store-task', 'App\Http\Controllers\TaskController@storeTask')->name('store-task');
 
     Route::get('/update-status/{id}', 'App\Http\Controllers\TaskController@completedTask');

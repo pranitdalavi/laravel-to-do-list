@@ -90,6 +90,17 @@ class TaskController extends Controller
         return view('edit_task', ['task' => $task, 'title' => $title]);
     }
 
+    //Retrieve task images
+    public function getTaskImages($id)
+    {
+        $task = Task::find($id);
+        dd($task->getFirstMediaUrl('task'));
+        $taskImages = $task->getMedia();
+        dd($taskImages);
+        $title = "Edit Task";
+        return view('edit_task', ['task' => $task, 'title' => $title]);
+    }
+
     //Delete task
     public function destroy($id)
     {
