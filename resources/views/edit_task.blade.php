@@ -105,6 +105,7 @@
                             <tr>
                                 <th scope="col">Image</th>
                                 <th scope="col">Image Name</th>
+                                <th scope="col">Delete Image</th>
                             </tr>
                         </thead>
                         <tbody class="navn">
@@ -115,6 +116,16 @@
                                 </td>
                                 <td>
                                     {{$image->name}}<br />
+                                </td>
+                                <td>
+                                    <form action="{{ url('task-image/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type="hidden" name="task_image_id" value="{{$image->id}}">
+                                        <button type="submit" id="delete-task-image-{{ $task->id }}" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -167,5 +178,10 @@
             }
 
         }
+    }
+
+
+    function alertDeleteTask() {
+        alert("Are you sure you want to delete this task?");
     }
 </script>

@@ -45,5 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/task/{id}', 'App\Http\Controllers\TaskController@destroy');
 
+    Route::delete('/task-image/{id}', 'App\Http\Controllers\TaskController@deleteTaskImage');
+
     Route::get('/edit/task/{id}', 'App\Http\Controllers\TaskController@editTask');
 });
