@@ -86,8 +86,10 @@ class TaskController extends Controller
     public function editTask($id)
     {
         $task = Task::find($id);
+        $taskImages[] = $task->getMedia('task');
+
         $title = "Edit Task";
-        return view('edit_task', ['task' => $task, 'title' => $title]);
+        return view('edit_task', ['task' => $task, 'title' => $title, 'taskImages' => $taskImages[0]]);
     }
 
     //Delete task
@@ -100,8 +102,23 @@ class TaskController extends Controller
         }
     }
 
+    //Delete taskImage
+    public function deleteTaskImage($id)
+    {
+        $task = Task::find($id);
+        $taskImages[] = $task->getMedia('task');
+        $taskImageId = request()->task_image_id;
+        $title = "Edit Task";
+
+        $taskImage = $taskImages[0]->where('id', $taskImageId)->first();
+        $taskDeleted = $taskImage->delete();
+        if ($taskDeleted) {
+            return redirect('edit/task/' . $id);
+        }
+    }
+
     //Update task status as completed
-    public function completedTask($id, Request $request)
+    public function completedTask($id)
     {
         $task = Task::find($id);
 
@@ -113,7 +130,7 @@ class TaskController extends Controller
     }
 
     //Update task status as incompleted
-    public function revertCompletedTask($id, Request $request)
+    public function revertCompletedTask($id)
     {
         $task = Task::find($id);
 

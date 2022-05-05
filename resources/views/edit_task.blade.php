@@ -6,7 +6,7 @@
     <title>Drag & Drop or Browse: File Upload | CodingNepal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-
+    <script src="https://kit.fontawesome.com/2b29b6dab6.js" crossorigin="anonymous"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -91,14 +91,50 @@
                             </div>
                         </div>
                     </form>
-                </div>xzf msbdaig hasakhhhhh h
-               
+                </div>
+
             </div>
         </div>
         <div style="margin-left: 40rem; width: 44%; height: 73%; margin-top: -39rem" class="border rounded ">
-            <h4  style="margin-left:20px; margin-top: 10px">Images</h4><br>
+            <h4 style="margin-left:20px; margin-top: 10px">Images</h4><br>
+            <div style="text-align: center" class="panel panel-default">
 
-           
+                <div class="panel-body" style="margin-left: 1rem">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Image Name</th>
+                                <th scope="col">Delete Image</th>
+                            </tr>
+                        </thead>
+                        <tbody class="navn">
+                            @foreach($taskImages as $image)
+                            <tr>
+                                <td>
+                                    <img src="{{$image->getUrl()}}" width="120px" height="120px"><br />
+                                </td>
+                                <td>
+                                    <br />
+                                
+                                    {{$image->name}}<br />
+                                </td>
+                                <td>
+                                    <form action="{{ url('task-image/'.$task->id) }}" onsubmit="alertDeleteTask()" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type="hidden" name="task_image_id" value="{{$image->id}}">
+                                        <button style="margin-top: 1.5rem" type="submit" id="delete-task-image-{{ $task->id }}" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -144,5 +180,10 @@
             }
 
         }
+    }
+
+
+    function alertDeleteTask() {
+        alert("Are you sure you want to delete this task image?");
     }
 </script>
