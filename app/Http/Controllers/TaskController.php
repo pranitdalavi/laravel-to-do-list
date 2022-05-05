@@ -118,7 +118,7 @@ class TaskController extends Controller
     }
 
     //Update task status as completed
-    public function completedTask($id, Request $request)
+    public function completedTask($id)
     {
         $task = Task::find($id);
 
@@ -130,7 +130,7 @@ class TaskController extends Controller
     }
 
     //Update task status as incompleted
-    public function revertCompletedTask($id, Request $request)
+    public function revertCompletedTask($id)
     {
         $task = Task::find($id);
 
